@@ -30,14 +30,20 @@ public class AlgorithmFactory {
                     public void paint() { graphCanvas.repaint(); }
                 };
                 break;
-            case DFS:
+            case SSSSTAR:
                 al = new SSSStar((Graph)graph) {
                     @Override
                     public void paint() { graphCanvas.repaint(); }
                 };
                 break;
+            case DFS:
+                al = new BFS((Graph)graph) {
+                    @Override
+                    public void paint() { graphCanvas.repaint(); }
+                };
+                break;
             default:
-                //System.out.println("createAlgorithm> null");
+                System.out.println("createAlgorithm> null");
         }
 
         if (al != null) {

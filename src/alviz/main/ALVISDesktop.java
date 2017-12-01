@@ -58,6 +58,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
                 algoMenu.setEnabled(true);
                     algoBFSButton.setEnabled(true);        // enabled after integration
                     algoDFSButton.setEnabled(true);       // enabled after integration
+                    algoSSSSTARButton.setEnabled(true);
                 sizeLabel.setEnabled(false);
                 sizeSpinner.setEnabled(false);
                 branchingFactorLabel.setEnabled(false);
@@ -84,7 +85,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
                 }
                 else {
                     graphMenu.setEnabled(true);
-                    /*if (app.isGameTree()) {
+                    if (app.isGameTree()) {
                         branchingFactorLabel.setEnabled(true);
                         branchingFactorComboBox.setEnabled(true);
                         densityLabel.setEnabled(true);
@@ -92,7 +93,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
                     
                         algoBFSButton.setEnabled(false);
                         algoDFSButton.setEnabled(false);
- 
+                        algoSSSSTARButton.setEnabled(false);
                         
                         graphGameTree_1Button.setEnabled(true);
                         graphGameTree_2Button.setEnabled(true);
@@ -111,8 +112,8 @@ public class ALVISDesktop extends javax.swing.JFrame {
                         graphGrid_3MSTButton.setEnabled(false);
                         graphGrid_4MSTButton.setEnabled(false);
 
-                    }*/
-                    //else {
+                    }
+                    else {
                         sizeLabel.setEnabled(true);
                         sizeSpinner.setEnabled(true);
 
@@ -142,7 +143,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
                         graphGrid_2MSTButton.setEnabled(true);
                         graphGrid_3MSTButton.setEnabled(true);
                         graphGrid_4MSTButton.setEnabled(true);
-                    //}
+                    }
                 }
             }
             break;
@@ -151,15 +152,15 @@ public class ALVISDesktop extends javax.swing.JFrame {
             break;
             case SEARCH_SPACE_LOADED: {
                 graphMenu.setEnabled(false);
-               /* if (app.isGameTree()) {
+                if (app.isGameTree()) {
                     branchingFactorLabel.setEnabled(false);
                     branchingFactorComboBox.setEnabled(false);
                     densityLabel.setEnabled(false);
                     densityComboBox.setEnabled(false);
                     stepThroughButton.setEnabled(true);
                     runButton2.setEnabled(true);
-                }*/
-                //else {
+                }
+                else {
                     sizeLabel.setEnabled(false);
                     sizeSpinner.setEnabled(false);
                     branchingFactorLabel.setEnabled(false);
@@ -168,7 +169,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
                     densityComboBox.setEnabled(false);
 
                     startNodeButton.setEnabled(true);
-                //}
+                }
             }
             break;
             case START_NODE_APPLIED: {
@@ -408,6 +409,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
         algoMenu = new javax.swing.JMenu();
         algoBFSButton = new javax.swing.JMenuItem();
         algoDFSButton = new javax.swing.JMenuItem();
+        algoSSSSTARButton = new javax.swing.JMenuItem();
         graphMenu = new javax.swing.JMenu();
         readGraphButton = new javax.swing.JMenuItem();
         jSeparator9 = new javax.swing.JSeparator();
@@ -619,13 +621,21 @@ public class ALVISDesktop extends javax.swing.JFrame {
         });
         algoMenu.add(algoBFSButton);
 
-        algoDFSButton.setText("SSS Star");
+        algoDFSButton.setText("DFS");
         algoDFSButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 algoDFSButtonActionPerformed(evt);
             }
         });
         algoMenu.add(algoDFSButton);
+
+        algoSSSSTARButton.setText("SSS Star");
+        algoSSSSTARButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                algoSSSSTARButtonActionPerformed(evt);
+            }
+        });
+        algoMenu.add(algoSSSSTARButton);
 
         jMenuBar1.add(algoMenu);
 
@@ -951,6 +961,11 @@ public class ALVISDesktop extends javax.swing.JFrame {
         algoActionPerformedHelper(evt);
     }//GEN-LAST:event_algoDFSButtonActionPerformed
 
+    private void algoSSSSTARButtonActionPerformed(java.awt.event.ActionEvent evt) {                                                 
+        // TODO add your handling code here:
+        algoActionPerformedHelper(evt);
+    }                                                 
+
     private void algoBFSButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_algoBFSButtonActionPerformed
         // TODO add your handling code here:
         algoActionPerformedHelper(evt);
@@ -976,6 +991,7 @@ public class ALVISDesktop extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem algoBFSButton;
     private javax.swing.JMenuItem algoDFSButton;
+    private javax.swing.JMenuItem algoSSSSTARButton;
     private javax.swing.JMenu algoMenu;
     private javax.swing.JComboBox branchingFactorComboBox;
     private javax.swing.JLabel branchingFactorLabel;

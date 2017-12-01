@@ -294,12 +294,12 @@ public class Application {
         return rc;
     }
 
-    //public boolean isGameTree() {
-    //    return (algoType != null ? algoType.isGameTree() : false);
-    //}
-    //public boolean isSeqAlign() {
-    //    return (algoType != null ? algoType.isSeqAlign() : false);
-    //}
+    public boolean isGameTree() {
+        return (algoType != null ? algoType.isGameTree() : false);
+    }
+//    public boolean isSeqAlign() {
+//        return (algoType != null ? algoType.isSeqAlign() : false);
+//    }
 
     public boolean selectSize(int nodeCount) {
         boolean rc = false;
@@ -489,12 +489,12 @@ public class Application {
             else {
                 //System.out.printf("loadGraph(%s), graph not found...\n", command);
             }
-            //if (isGameTree()) {
-            //    GraphPainter.setPrintLabelBoth();
-            //}
-            //else {
-            //    GraphPainter.setPrintLabelNone();
-            //}
+            if (isGameTree()) {
+                GraphPainter.setPrintLabelBoth();
+            }
+            else {
+                GraphPainter.setPrintLabelNone();
+            }
         }
         return rc;
     }
@@ -541,7 +541,9 @@ public class Application {
                     resetPipeMode();
                     panel.repaint();
                 }
+                System.out.println("Algorithm Created !<Start>");
                 algo = AlgorithmFactory.createAlgorithm(panel, algoType, graph, true, refreshRate);
+                 System.out.println("Algorithm Created !<ENd>");
                 algoThread = new Thread(algo);
                 algoThread.start();
                 execState = ExecState.STEPPING_THROUGH;
@@ -568,15 +570,21 @@ public class Application {
 
     public boolean runAlgo(JPanel panel) {
         boolean rc = false;
-        if (isNextState(ExecState.RUNNING)) {
+        System.out.println("runAlgo> algo <start>");
+         System.out.println("ALGOTYPE ::"+ algoType);
+//        if (isNextState(ExecState.RUNNING)) {
             // first time invocation
+          if(true){
+            System.out.println("ALGOTYPE ::"+ algoType);
             if (algo == null) {
-//                System.out.println("runAlgo> algo is null");
+                System.out.println("runAlgo> algo is null");
                 if (isPipeMode()) {
                     recreateGraph();
                     resetPipeMode();
                     panel.repaint();
                 }
+                
+                
                 algo = AlgorithmFactory.createAlgorithm(panel, algoType, graph, false, refreshRate);
                 algoThread = new Thread(algo);
                 algoThread.start();
@@ -585,7 +593,7 @@ public class Application {
             }
             // otherwise execution is in step through mode
             else {
-//                System.out.println("runAlgo> algo is not null");
+                System.out.println("STEP Through MOde");
                 algo.setRunnableTrue();
                 LockSupport.unpark(algoThread);
                 execState = ExecState.RUNNING;

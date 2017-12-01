@@ -14,7 +14,8 @@ import alviz.base.graph.GraphClass;
 public enum AlgorithmType {
 
     BFS("BFS", GraphClass.GRAPH),
-    DFS("SSS Star", GraphClass.GRAPH),
+    DFS("DFS", GraphClass.GRAPH),
+    SSSSTAR("SSS Star", GraphClass.GRAPH),
             ;
     
     private String MenuItemName;
@@ -29,16 +30,17 @@ public enum AlgorithmType {
     }
 
     
-    //public boolean isGameTree() {
-    //    switch (this) {
-    //        case MIN_MAX:
-    //        case ALPHA_BETA:
-    //        case SSS_STAR:
-    //            return true;
-    //        default:
-    //            return false;
-    //    }
-    //}
+    public boolean isGameTree() {
+        switch (this) {
+//            case MIN_MAX:
+//            case ALPHA_BETA:
+            case SSSSTAR:
+                return true;
+            default:
+                return false;
+        }
+//    return true;
+    }
     
 
     //public boolean isSeqAlign() {
