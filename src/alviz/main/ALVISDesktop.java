@@ -86,11 +86,14 @@ public class ALVISDesktop extends javax.swing.JFrame {
                 else {
                     graphMenu.setEnabled(true);
                     if (app.isGameTree()) {
+                        sizeLabel.setEnabled(true);
+                        sizeSpinner.setEnabled(true);
+
                         branchingFactorLabel.setEnabled(true);
                         branchingFactorComboBox.setEnabled(true);
                         densityLabel.setEnabled(true);
                         densityComboBox.setEnabled(true);
-                    
+                        
                         algoBFSButton.setEnabled(false);
                         algoDFSButton.setEnabled(false);
                         algoSSSSTARButton.setEnabled(false);

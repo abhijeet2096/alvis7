@@ -101,6 +101,7 @@ public class SSSStar extends Algorithm {
     private void sssstar() throws Exception {
         while(true) {
             State p = open.poll();
+            
             if(p == null)
                 continue;
             System.out.println(getCost(parents ,p.getId(),startNode));
@@ -140,11 +141,21 @@ public class SSSStar extends Algorithm {
                     }
                     else {
                         System.out.println("1.3");
-                        List<Node> children = p.getId().getChildren();
-                        for(int i = 1; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
-                            open.add(new State(children.get(i), false, p.gethValue(),!p.isKind()));
-                            parents.put(children.get(i), p.getId());
+                        List<Node> children = p.getId().getChildren();    
+                        if(parents.get(p.getId()) == null)
+                            {
+                             for(int i = 0; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
+                                open.add(new State(children.get(i), false, p.gethValue(),!p.isKind()));
+                                parents.put(children.get(i), p.getId());
                             
+                            }
+                            }
+                        else{
+                            for(int i = 1; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
+                                open.add(new State(children.get(i), false, p.gethValue(),!p.isKind()));
+                                parents.put(children.get(i), p.getId());
+                            
+                            }
                         }
                         
                     }

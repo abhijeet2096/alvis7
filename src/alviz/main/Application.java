@@ -101,7 +101,7 @@ public class Application {
         refreshRate = new PaintDelay();
         branchingFactor = 2;
         setNodeCount(nodeCountGiven);
-        this.sizeUpdatable = false;
+        this.sizeUpdatable = true;
         this.computeGridDimension = true;
     }
 
@@ -348,8 +348,8 @@ public class Application {
         if (isNextState(ExecState.SEARCH_SPACE_LOADED)) {
             if (command.equals("Game Tree-1")) {
                 resetApp();
-                graph = GraphFactory.createGraph(graphClass);
-                graph = GraphFactory.createTree(graph, branchingFactor, width, height, 2, 2*(densityMax-density), false);
+                graph = GraphFactory.createGraph(graphClass);   
+                graph = GraphFactory.createTree(graph, branchingFactor, width, height, 2, 250, false);//todo change 250 with a relation to size
                 nodeCount = graph.getNodeCount();
                 setSizeUpdatableTrue();
                 graphSelector = new GraphSelector(graph);

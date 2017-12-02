@@ -4,8 +4,16 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/base/graph/GraphClass.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/graph/factory/GraphFactory.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/main/Application.java</file>
             <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/algorithm/SSSStar.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/main/ALVISDesktop.java</file>
             <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/algorithm/State.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/base/algorithm/Algorithm.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/base/algorithm/AlgorithmType.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/base/algorithm/AlgorithmFactory.java</file>
+            <file>file:/home/abhijeet/cloud/code/sem5/ai/Ass_3_updated/alvis7_M_Group_7/src/alviz/base/graph/BaseGraph.java</file>
         </group>
     </open-files>
 </project-private>
