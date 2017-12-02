@@ -31,6 +31,7 @@ public class SSSStar extends Algorithm {
     private int branchingFactor = 2;
     private BaseGraph graph;
     private PriorityQueue<State> open;
+    private PriorityQueue<State> leaves;
     private LinkedList<Pair<BaseGraph.Node,BaseGraph.Node>> closed;
     private HashMap<Node, Node> parents;
     private Node startNode;
@@ -61,12 +62,18 @@ public class SSSStar extends Algorithm {
                 return (int) (o2.gethValue() - o1.gethValue());
             }
         });
+        leaves = new PriorityQueue(20, new Comparator<State>(){
+            @Override
+            public int compare(State o1, State o2) {
+                return (int) (o2.gethValue() - o1.gethValue());
+            }
+        });
         closed = new LinkedList();
         parents = new HashMap<Node, Node>();
         startNode = this.graph.getStartNode();
         parents.put(startNode, null);
         System.out.println(startNode.getChildren().size());
-        openNode(new State(startNode, false, Double.POSITIVE_INFINITY,true), null);
+        openNode(new State(startNode, false, Integer.MAX_VALUE, true), null);
         sssstar();
         generatePath();
         setStateEnded();
@@ -116,28 +123,22 @@ public class SSSStar extends Algorithm {
                     System.out.println("live");
                     if(p.getId().getChildren().size() == 1) {
                         System.out.println("1.1");
-                        if(getCost(parents, p.getId(),startNode) < p.gethValue()) {
-                            p.sethValue(getCost(parents, p.getId(),startNode));
-                        }
-                        else{
-                            p.sethValue(p.gethValue());
-                        }
+//                        if(getCost(parents, p.getId(),startNode) < p.gethValue()) {
+//                            p.sethValue(getCost(parents, p.getId(),startNode));
+//                        }
+//                        else{
+//                            p.sethValue(p.gethValue());
+//                        }
+                        p.sethValue(p.getId().value);
                         p.setIsSolved(true);
-                        open.add(p);
+                        leaves.add(p);
+                        System.out.println("Leaves in pQueue: " + leaves.size());
                     }
                     else if(!p.isKind()) { // J is Min node
                         List<Node> children = p.getId().getChildren();
                         System.out.println("1.2");
-                        for(Node c : children) {
-                            if(c.equals(p.getId())) {
-                                
-                            }
-                            else {
-                                open.add(new State(children.get(1), false, p.gethValue(),!p.isKind())); // Add First
-                                parents.put(children.get(1), p.getId());
-                                break;
-                            }
-                        }
+                        open.add(new State(children.get(1), false, p.gethValue(),!p.isKind())); // Add First
+                        parents.put(children.get(1), p.getId());
                     }
                     else {
                         System.out.println("1.3");

@@ -9,7 +9,7 @@ import alviz.base.graph.BaseGraph.Node;
 public class State {
     private Node id;
     private boolean isSolved;
-    private Double hValue;
+    private int hValue;
     private boolean isKind;
     
     public boolean isKind() { //true for max false for min
@@ -20,7 +20,7 @@ public class State {
         this.isKind = isKind;
     }
 
-    public State(Node id, boolean isSolved, Double hValue,boolean isKind) {
+    public State(Node id, boolean isSolved, int hValue,boolean isKind) {
         this.id = id;
         this.isSolved = isSolved;
         this.hValue = hValue;
@@ -43,11 +43,11 @@ public class State {
         this.isSolved = isSolved;
     }
 
-    public Double gethValue() {
+    public int gethValue() {
         return hValue;
     }
 
-    public void sethValue(Double hValue) {
+    public void sethValue(int hValue) {
         this.hValue = hValue;
     }
 
