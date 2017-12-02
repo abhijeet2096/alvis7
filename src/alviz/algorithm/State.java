@@ -48,6 +48,7 @@ public class State {
     }
 
     public void sethValue(int hValue) {
+        this.id.value = hValue;
         this.hValue = hValue;
     }
 

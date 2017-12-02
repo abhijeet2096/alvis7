@@ -31,7 +31,6 @@ public class SSSStar extends Algorithm {
     private int branchingFactor = 2;
     private BaseGraph graph;
     private PriorityQueue<State> open;
-    private PriorityQueue<State> leaves;
     private LinkedList<Pair<BaseGraph.Node,BaseGraph.Node>> closed;
     private HashMap<Node, Node> parents;
     private Node startNode;
@@ -62,15 +61,10 @@ public class SSSStar extends Algorithm {
                 return (int) (o2.gethValue() - o1.gethValue());
             }
         });
-        leaves = new PriorityQueue(20, new Comparator<State>(){
-            @Override
-            public int compare(State o1, State o2) {
-                return (int) (o2.gethValue() - o1.gethValue());
-            }
-        });
         closed = new LinkedList();
         parents = new HashMap<Node, Node>();
         startNode = this.graph.getStartNode();
+        startNode.value = Integer.MAX_VALUE;
         parents.put(startNode, null);
         System.out.println(startNode.getChildren().size());
         openNode(new State(startNode, false, Integer.MAX_VALUE, true), null);
@@ -116,23 +110,17 @@ public class SSSStar extends Algorithm {
             show();
             
             if(p.getId() == startNode && p.isIsSolved()) {
-                System.out.println("end");
+                System.out.println("Minimax value: " + p.gethValue());
             }
             else {
                 if(!p.isIsSolved()) { // LIVE
                     System.out.println("live");
                     if(p.getId().getChildren().size() == 1) {
                         System.out.println("1.1");
-//                        if(getCost(parents, p.getId(),startNode) < p.gethValue()) {
-//                            p.sethValue(getCost(parents, p.getId(),startNode));
-//                        }
-//                        else{
-//                            p.sethValue(p.gethValue());
-//                        }
-                        p.sethValue(p.getId().value);
+                        
+                        p.sethValue(Math.min(p.getId().value, p.gethValue()));
                         p.setIsSolved(true);
-                        leaves.add(p);
-                        System.out.println("Leaves in pQueue: " + leaves.size());
+                        open.add(p);
                     }
                     else if(!p.isKind()) { // J is Min node
                         List<Node> children = p.getId().getChildren();
@@ -143,19 +131,16 @@ public class SSSStar extends Algorithm {
                     else {
                         System.out.println("1.3");
                         List<Node> children = p.getId().getChildren();    
-                        if(parents.get(p.getId()) == null)
-                            {
-                             for(int i = 0; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
+                        if(parents.get(p.getId()) == null){
+                            for(int i = 0; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
                                 open.add(new State(children.get(i), false, p.gethValue(),!p.isKind()));
                                 parents.put(children.get(i), p.getId());
-                            
                             }
-                            }
+                        }
                         else{
                             for(int i = 1; i < children.size(); i++) {            // Because all given cases are graph so also getchildren returns neighbours due to which we have to assume that first index will always be parent
                                 open.add(new State(children.get(i), false, p.gethValue(),!p.isKind()));
                                 parents.put(children.get(i), p.getId());
-                            
                             }
                         }
                         
