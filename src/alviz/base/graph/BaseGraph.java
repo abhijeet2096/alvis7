@@ -400,6 +400,7 @@ public abstract class BaseGraph <tNode extends BaseGraph.Node, tEdge extends Bas
         // begin node data...
         public int x;
         public int y;
+        public int value;
         // end node data
 
         private int id;
@@ -409,7 +410,9 @@ public abstract class BaseGraph <tNode extends BaseGraph.Node, tEdge extends Bas
         protected String idStr=null;
 
         public String getIdString() {
-            if (idStr == null) idStr = String.format("%d:(%d,%d)", id, x, y);
+            if( this.neighbors.size() == 1)
+                this.value = (int) ((Math.random()) * 100);
+            if (idStr == null) idStr = String.format("%d: %d", id, this.value);
             return idStr;
         }
 

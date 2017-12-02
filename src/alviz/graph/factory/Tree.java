@@ -88,7 +88,7 @@ public class Tree {
             for (int i=0; i<leafsAllowed; ++i) {
                 tree t = new tree(0);
                 t.setPoint(x, y);
-                t.setPoint(54, 54);
+//                t.setPoint(54, 54);
                 htree[i] = t;
                 if (hprev != null) hprev.hnext = t;
                 hprev = t;
